@@ -45,7 +45,7 @@ public class User extends BaseEntity {
 	@Temporal(TemporalType.DATE)
 	private Date birthday;
 
-	@Column(name = "enabled", columnDefinition = "default 2")
+	@Column(name = "enabled", columnDefinition = "default 1")
 	private int enabled;
 
 	@ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)

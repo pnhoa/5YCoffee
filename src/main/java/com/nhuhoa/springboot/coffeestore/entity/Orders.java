@@ -21,6 +21,9 @@ public class Orders extends BaseEntity {
 
 	@Column(name = "note")
 	private String note;
+	
+	@Column(name = "address")
+	private String address;
 
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "customer_id")
@@ -74,5 +77,22 @@ public class Orders extends BaseEntity {
 	public void setNote(String note) {
 		this.note = note;
 	}
+
+	public String getAddress() {
+		return address;
+	}
+
+	public void setAddress(String address) {
+		this.address = address;
+	}
+
+	public List<OrdersDetail> getOrdersDetail() {
+		return ordersDetail;
+	}
+
+	public void setOrdersDetail(List<OrdersDetail> ordersDetail) {
+		this.ordersDetail = ordersDetail;
+	}
+	
 
 }

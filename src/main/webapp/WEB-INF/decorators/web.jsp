@@ -50,6 +50,8 @@
   
     <!-- Footer -->
   <%@ include file="/common/web/footer.jsp" %>
+  
+  		
 
 	  <script src="<c:url value='/template/web/js/jquery.min.js' />"></script>
 	  <script src="<c:url value='/template/web/js/jquery-migrate-3.0.1.min.js' />"></script>
