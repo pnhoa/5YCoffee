@@ -23,6 +23,7 @@ public class HomeControler {
 
 	@GetMapping(value= {"/", ""})
 	public String showHomePage() {
+		
 		return "web/home";
 	}
 	

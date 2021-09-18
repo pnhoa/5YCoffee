@@ -2,7 +2,6 @@ package com.nhuhoa.springboot.coffeestore.entity;
 
 import java.math.BigDecimal;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -22,11 +21,14 @@ public class OrdersDetail extends BaseEntity{
 	@JoinColumn(name = "product_id")
 	private Product product;
 	
-	@Column(name = "number", columnDefinition = "default 1")
-	private int number;
+	@Column(name = "quantity", columnDefinition = "default 1")
+	private int quantity;
 	
 	@Column(name = "total_price")
 	private BigDecimal totalPrice;
+	
+	@Column(name = "status", columnDefinition = "default 0")
+	private int status;
 
 	public Orders getOrder() {
 		return orders;
@@ -44,12 +46,12 @@ public class OrdersDetail extends BaseEntity{
 		this.product = product;
 	}
 
-	public int getNumber() {
-		return number;
+	public int getQuantity() {
+		return quantity;
 	}
 
-	public void setNumber(int number) {
-		this.number = number;
+	public void setQuantity(int quantity) {
+		this.quantity = quantity;
 	}
 
 	public BigDecimal getTotalPrice() {
@@ -58,6 +60,22 @@ public class OrdersDetail extends BaseEntity{
 
 	public void setTotalPrice(BigDecimal totalPrice) {
 		this.totalPrice = totalPrice;
+	}
+
+	public Orders getOrders() {
+		return orders;
+	}
+
+	public void setOrders(Orders orders) {
+		this.orders = orders;
+	}
+
+	public int getStatus() {
+		return status;
+	}
+
+	public void setStatus(int status) {
+		this.status = status;
 	}
 	
 
