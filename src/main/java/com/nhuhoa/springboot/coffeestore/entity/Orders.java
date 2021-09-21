@@ -4,6 +4,7 @@ import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -33,18 +34,9 @@ public class Orders extends BaseEntity {
 	@JoinColumn(name = "user_id")
 	private User user;
 
-	@OneToMany(mappedBy = "orders")
-	private List<OrdersDetail> ordersDetail = new ArrayList<OrdersDetail>();
-
+	@OneToMany(mappedBy = "orders", orphanRemoval = true, cascade = CascadeType.ALL)
+	private List<OrdersDetail> ordersDetails = new ArrayList<OrdersDetail>();
 	
-
-	public List<OrdersDetail> getOrderDetail() {
-		return ordersDetail;
-	}
-
-	public void setOrderDetail(List<OrdersDetail> orderDetail) {
-		this.ordersDetail = orderDetail;
-	}
 
 	public Customer getCustomer() {
 		return customer;
@@ -86,12 +78,12 @@ public class Orders extends BaseEntity {
 		this.address = address;
 	}
 
-	public List<OrdersDetail> getOrdersDetail() {
-		return ordersDetail;
+	public List<OrdersDetail> getOrdersDetails() {
+		return ordersDetails;
 	}
 
-	public void setOrdersDetail(List<OrdersDetail> ordersDetail) {
-		this.ordersDetail = ordersDetail;
+	public void setOrdersDetails(List<OrdersDetail> ordersDetails) {
+		this.ordersDetails = ordersDetails;
 	}
 	
 

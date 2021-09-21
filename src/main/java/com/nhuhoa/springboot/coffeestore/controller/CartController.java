@@ -8,7 +8,6 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -17,6 +16,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 import com.nhuhoa.springboot.coffeestore.dto.ProductDTO;
 import com.nhuhoa.springboot.coffeestore.model.Cart;
 import com.nhuhoa.springboot.coffeestore.model.CartItem;
+import com.nhuhoa.springboot.coffeestore.service.web.CustomerService;
+import com.nhuhoa.springboot.coffeestore.service.web.OrdersDetailService;
+import com.nhuhoa.springboot.coffeestore.service.web.OrdersService;
 import com.nhuhoa.springboot.coffeestore.service.web.ProductService;
 import com.nhuhoa.springboot.coffeestore.utils.CartUtils;
 
@@ -26,6 +28,15 @@ public class CartController {
 	
 	@Autowired
 	private ProductService productService;
+	
+	@Autowired
+	private OrdersService ordersService;
+	
+	@Autowired
+	private CustomerService customerService;
+	
+	@Autowired
+	private OrdersDetailService ordersDetailService;
 	
 	@GetMapping("/cart")
 	public String showCartPage(HttpServletRequest request, HttpSession session) {
@@ -73,7 +84,7 @@ public class CartController {
 			session.setAttribute("myCartItems", cartItems);
 			session.setAttribute("cartItemNum", theCartSession.getCartItemNum());
 			
-			return "redirect:cart";
+			return "redirect:payment";
 	}
 	
 	@GetMapping("/remove/{id}")
@@ -95,14 +106,59 @@ public class CartController {
 		
 		
 		
-		return "web/cart"; 
+		return "redirect:/checkout/cart"; 
 	}
 	
 	@GetMapping("/payment")
 	public String showPaymentPage() {
 		
-		
 		return "web/payment";
 	}
+	
+	@PostMapping("/orders")
+	public String processSavingOrder(HttpServletRequest request, HttpSession session) {
+			
+		String address = request.getParameter("address");
+		
+		String note = request.getParameter("note");
+		
+		Long id = Long.parseLong(request.getParameter("id"));
+		
+		Cart theCart = CartUtils.getCartInSession(request);
+		
+		theCart.setCustomer(customerService.findById(id));
+		
+		theCart.setAddress(address);
+		
+		theCart.setNote(note);
+		
+		
+		
+		Cart theSavedCart = ordersService.save(theCart);
+		
+		List<CartItem> cartItems = theCart.getCartItems();
+		
+		
+		for(CartItem  cartItem : cartItems) {
+			cartItem.setCart(theSavedCart);
+			ordersDetailService.save(cartItem);
+		}
+		
+		Cart theNewCart = new Cart();
+		
+		session.setAttribute("myCart", new Cart());
+		session.setAttribute("myCartItems", theNewCart.getCartItems());
+		session.setAttribute("cartItemNum", theNewCart.getCartItemNum());
+		
+		
+		return "redirect:order-success";
+	}
+	
+	@GetMapping("/order-success")
+	public String showSuccessOrderPage() {
+		
+		return "web/order-success";
+	}
+	
 	
 }

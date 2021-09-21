@@ -30,13 +30,7 @@ public class OrdersDetail extends BaseEntity{
 	@Column(name = "status", columnDefinition = "default 0")
 	private int status;
 
-	public Orders getOrder() {
-		return orders;
-	}
-
-	public void setOrder(Orders order) {
-		this.orders = order;
-	}
+	
 
 	public Product getProduct() {
 		return product;

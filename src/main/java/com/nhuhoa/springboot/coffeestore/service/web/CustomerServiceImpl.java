@@ -66,6 +66,16 @@ public class CustomerServiceImpl implements CustomerService {
 		
 		CustomerDTO theCustomerDTO = mapper.map(theCustomer, CustomerDTO.class);
 		
+		// set birthday String display in view
+		Date birthday = theCustomerDTO.getBirthday();	
+		String birthdayString = null;
+		if(birthday != null) {
+			birthdayString = DateUtils.dateToString(birthday);
+		}
+		theCustomerDTO.setBirthdayString(birthdayString);	
+		
+		theCustomerDTO.setBirthdayString(birthdayString);
+		
 		return theCustomerDTO;
 	}
 
@@ -124,6 +134,16 @@ public class CustomerServiceImpl implements CustomerService {
 		
 		CustomerDTO theCustomerDTO = mapper.map(theCustomer, CustomerDTO.class);
 		
+		// set birthday String display in view
+		Date birthday = theCustomerDTO.getBirthday();	
+		String birthdayString = null;
+		if(birthday != null) {
+			birthdayString = DateUtils.dateToString(birthday);
+		}
+		theCustomerDTO.setBirthdayString(birthdayString);	
+		
+		theCustomerDTO.setBirthdayString(birthdayString);
+		
 		return theCustomerDTO;
 	}
 	
@@ -138,6 +158,16 @@ public class CustomerServiceImpl implements CustomerService {
 		
 		CustomerDTO theCustomerDTO = mapper.map(theCustomer, CustomerDTO.class);
 		
+		// set birthday String display in view
+		Date birthday = theCustomerDTO.getBirthday();	
+		String birthdayString = null;
+		if(birthday != null) {
+			birthdayString = DateUtils.dateToString(birthday);
+		}
+		theCustomerDTO.setBirthdayString(birthdayString);	
+		
+		theCustomerDTO.setBirthdayString(birthdayString);
+
 		return theCustomerDTO;
 	}
 	

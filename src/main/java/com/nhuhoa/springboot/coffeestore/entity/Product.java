@@ -37,7 +37,7 @@ public class Product extends BaseEntity {
 	private Category category;
 	
 	@OneToMany(mappedBy = "product", cascade = CascadeType.REMOVE, orphanRemoval = true)
-	private List<OrdersDetail> ordersDetail = new ArrayList<OrdersDetail>();
+	private List<OrdersDetail> ordersDetails = new ArrayList<OrdersDetail>();
 
 	public String getName() {
 		return name;
@@ -79,12 +79,12 @@ public class Product extends BaseEntity {
 		this.category = category;
 	}
 
-	public List<OrdersDetail> getOrderDetail() {
-		return ordersDetail;
+	public List<OrdersDetail> getOrderDetails() {
+		return ordersDetails;
 	}
 
-	public void setOrderDetail(List<OrdersDetail> orderDetail) {
-		this.ordersDetail = orderDetail;
+	public void setOrderDetail(List<OrdersDetail> orderDetails) {
+		this.ordersDetails = orderDetails;
 	}
 
 	public String getShortDescription() {

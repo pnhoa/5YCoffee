@@ -15,21 +15,21 @@
 	<section class="ftco-section">
       <div class="container">
         <div class="row">
-        <form action="#" class="billing-form ftco-bg-dark p-3 p-md-5">
+        <form:form action="${pageContext.request.contextPath}/checkout/orders" method="post" class="billing-form ftco-bg-dark p-3 p-md-5" name="ordersForm">
           <div class="col-xl-8 ftco-animate">
-			
+				<input type="hidden" name="id" value="${sessionScope.customer.id}">
 				<h3 class="mb-4 billing-heading">Billing Details</h3>
 	          	<div class="row align-items-end">
 	          		<div class="col-md-6">
 	                <div class="form-group">
 	                	<label for="firstname">First Name</label>
-	                  <input type="text" class="form-control" name="firstName" value="${sessionScope.customer.firstName}" placeholder="" required>
+	                  <input type="text" class="form-control" name="firstName" value="${sessionScope.customer.firstName}" placeholder="" readonly>
 	                </div>
 	              </div>
 	              <div class="col-md-6">
 	                <div class="form-group">
 	                	<label for="lastname">Last Name</label>
-	                  <input type="text" class="form-control" name="lastName" value="${sessionScope.customer.lastName}" placeholder="" required>
+	                  <input type="text" class="form-control" name="lastName" value="${sessionScope.customer.lastName}" placeholder="" readonly>
 	                </div>
                 </div>
                 <div class="w-100"></div>
@@ -93,11 +93,11 @@
 	          	</div>
 	          	
 	          </div>
-	           </form><!-- END -->
+	           </form:form><!-- END -->
           </div> <!-- .col-md-8 -->
           
        </div>
-      </div>
+      
     </section>
 
 </body>

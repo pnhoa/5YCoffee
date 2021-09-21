@@ -43,6 +43,9 @@ public class ProductServiceImpl implements ProductService {
 	public ProductDTO findById(Long id) {
 		
 		Product theProduct = productDao.findById(id);
+		if(theProduct == null) {
+			return null;
+		}
 		
 		ProductDTO theProductDTO = mapper.map(theProduct, ProductDTO.class);
 		

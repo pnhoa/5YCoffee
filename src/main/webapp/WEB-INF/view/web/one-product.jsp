@@ -6,24 +6,7 @@
 	  <!-- Required meta tags -->
     <meta charset="utf-8">
 
-	<script type="text/javascript">
-		$(document).ready(function () {
-
-			  var $buttonPlus = $('.quantity-right-plus');
-			  var $buttonMin = $('.quantity-left-minus');
-			  var $quantity = $('#quantity');
-			  
-			  /*For plus and minus buttons*/
-			  $buttonPlus.click(function() {
-			    $quantity.val(parseInt($quantity.val()) + 1).trigger('input');
-			  });
-			  
-			  $buttonMin.click(function() {
-			    $quantity.val(Math.max(parseInt($quantity.val()) - 1, 0)).trigger('input');
-			  });
-		    
-		});
-	</script>
+	
 	<title>Shop Single</title>
 	
 </head>
@@ -47,13 +30,13 @@
 							<div class="w-100"></div>
 								<div class="input-group col-md-6 d-flex mb-3">
 					             	<span class="input-group-btn mr-2">
-					                	<button type="button" id="minus" class="quantity-left-minus"  data-type="minus" data-field="">
+					                	<button type="button" id="minus" class="quantity-left-minus btn"  data-type="minus" onclick="clickLeft()" data-field="">
 					                   <i class="icon-minus"></i>
 					                	</button>
 					            		</span>
 					             	<input type="text" id="quantity" name="quantity" class="form-control input-number" value="1" min="1" max="100" readonly>
 					             	<span class="input-group-btn ml-2">
-					                	<button type="button" id="plus" class="quantity-right-plus" data-type="plus" data-field="">
+					                	<button type="button" id="plus" class="quantity-right-plus btn" data-type="plus" onclick="clickRight()" data-field="">
 					                     <i class="icon-plus"></i>
 					                 </button>
 					             	</span>
@@ -104,40 +87,22 @@
 
 	
   <script>
-		$(document).ready(function(){
+		function clickRight(){
+			var quantity = parseInt($('#quantity').val());
+			
+			$('#quantity').val(quantity + 1);
+		}
 
-			var quantitiy=0;
-			   $('.quantity-right-plus').click(function(e){
-
-			        // Stop acting like a button
-			        e.preventDefault();
-			        // Get the field name
-			        var quantity = parseInt($('#quantity').val());
-
-			        // If is not undefined
-
-			            $('#quantity').val(quantity + 1).trigger('input');;
-
-
-			            // Increment
-
-			    });
-
-			     $('.quantity-left-minus').click(function(e){
-			        // Stop acting like a button
-			        e.preventDefault();
-			        // Get the field name
-			        var quantity = parseInt($('#quantity').val());
-
-			        // If is not undefined
-
-			            // Increment
-			            if(quantity>0){
-			            $('#quantity').val(quantity - 1).trigger('input');
-			            }
-			    });
+		function clickLeft(){
+		    var quantity = parseInt($('#quantity').val());
 		    
-		});
+	            if(quantity>0){
+	            	
+	           	 	$('#quantity').val(quantity - 1);
+	           	 	
+	            }
+		}	
+			  
 	</script>
 </body>
 </html>

@@ -9,6 +9,8 @@ import com.nhuhoa.springboot.coffeestore.dto.ProductDTO;
 
 public class Cart {
 	
+	private Long id;
+	
 	private int orderNum;
 	
 	private CustomerDTO customer;
@@ -16,10 +18,45 @@ public class Cart {
 	private final List<CartItem> cartItems = new ArrayList<CartItem>();
 	
 	private BigDecimal totalPrice;
+	
+	private String address;
+	
+	private String note;
 
 	public Cart() {
 		
 	}
+
+	
+	public Long getId() {
+		return id;
+	}
+
+
+	public void setId(Long id) {
+		this.id = id;
+	}
+
+
+	public String getAddress() {
+		return address;
+	}
+
+
+	public void setAddress(String address) {
+		this.address = address;
+	}
+
+
+	public String getNote() {
+		return note;
+	}
+
+
+	public void setNote(String note) {
+		this.note = note;
+	}
+
 
 	public int getOrderNum() {
 		return orderNum;

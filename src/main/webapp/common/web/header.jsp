@@ -28,8 +28,8 @@
 	        	 <li class="nav-item dropdown">
 		              <a class="nav-link dropdown-toggle" href="/customer/account/" id="dropdown04" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><span class="icon-user" ></span> Account</a>
 		              <div class="dropdown-menu" aria-labelledby="dropdown04">
-		              	<a class="dropdown-item" href="shop.html">Customer Info</a>
-		                <a class="dropdown-item" href="/sales/order/history">Order History</a>
+		              	<a class="dropdown-item" href="/account">Customer Info</a>
+		                <a class="dropdown-item" href="/orders/history">Order History</a>
 		                <form:form action="${pageContext.request.contextPath}/logout" method="POST" hidden="true" name="logoutForm">
 						
 							<input type="submit" value="Logout" style="border: none; background: none;" class="nav-link"/>
@@ -59,7 +59,7 @@
            		 </li>	
 	          </c:if>
 	          
-	           <li class="nav-item cart"><a href="checkout/cart" class="nav-link"><span class="icon icon-shopping_cart"></span><span class="bag d-flex justify-content-center align-items-center">
+	           <li class="nav-item cart"><a href="/checkout/cart" class="nav-link"><span class="icon icon-shopping_cart"></span><span class="bag d-flex justify-content-center align-items-center">
 		           <small> 
 		           		<c:if test="${sessionScope.customer == null}">0</c:if>
 		           		<c:if test="${sessionScope.customer != null}">${sessionScope.cartItemNum}</c:if>

@@ -63,11 +63,13 @@ public class ProductDao implements IProductDao {
 			
 			theProduct = (Product) theQuery.getSingleResult();
 			
+			session.getTransaction().commit();
+			
 		} catch (Exception e) {
 			e.printStackTrace();
 			session.getTransaction().rollback();
 		} finally {
-			session.getTransaction().commit();
+			
 		    session.close();
 		}
 		return theProduct;
@@ -139,7 +141,7 @@ public class ProductDao implements IProductDao {
 		Session session = sessionFactory.getCurrentSession();
 		session.beginTransaction();
 		
-		Query theQuery =session.createQuery("select count(*) from Product", Long.class);
+		Query<Long> theQuery =session.createQuery("select count(*) from Product", Long.class);
 		
 		Long theTotalItem = (Long) theQuery.uniqueResult();
 		

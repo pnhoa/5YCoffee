@@ -1,5 +1,7 @@
 package com.nhuhoa.springboot.coffeestore.controller;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -7,6 +9,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.nhuhoa.springboot.coffeestore.dto.CategoryDTO;
+import com.nhuhoa.springboot.coffeestore.dto.CustomerDTO;
 import com.nhuhoa.springboot.coffeestore.dto.ProductDTO;
 import com.nhuhoa.springboot.coffeestore.paging.IPaging;
 import com.nhuhoa.springboot.coffeestore.service.web.CategoryService;
@@ -76,5 +79,16 @@ public class HomeControler {
 		theModel.addAttribute("products", theProducts);
 		
 		return "web/one-product";
+	}
+	
+	@GetMapping("/account")
+	public String showAccountPage(Model theModel, HttpSession session) {
+		
+		CustomerDTO theCustomer = (CustomerDTO) session.getAttribute("customer");
+		
+		theModel.addAttribute("customer", theCustomer);
+		
+		
+		return "web/account";
 	}
 }

@@ -11,10 +11,23 @@ public class CartItem {
 	private int quantity;
 	
 	private BigDecimal totalPrice;
+	
+	private Cart cart;
 
 	public CartItem(int quantity) {
 		this.quantity = 0;
 	}
+	
+
+	public Cart getCart() {
+		return cart;
+	}
+
+
+	public void setCart(Cart cart) {
+		this.cart = cart;
+	}
+
 
 	public ProductDTO getProduct() {
 		return product;
