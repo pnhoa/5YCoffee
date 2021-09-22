@@ -4,7 +4,6 @@ import java.sql.Timestamp;
 import java.util.Date;
 
 import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
 
 import com.nhuhoa.springboot.coffeestore.entity.Role;
 import com.nhuhoa.springboot.coffeestore.validation.CheckDateFormat;

@@ -13,17 +13,8 @@
 	          <li class="nav-item"><a href="<c:url value='/menu'/>" class="nav-link">Menu</a></li>
 	          <li class="nav-item"><a href="<c:url value='/services'/>" class="nav-link">Services</a></li>
 	          <li class="nav-item"><a href="<c:url value='/'/>" class="nav-link">Blog</a></li>
-	          <li class="nav-item "><a href="<c:url value='/'/>" class="nav-link">About</a></li>
-	          <li class="nav-item dropdown">
-              <a class="nav-link dropdown-toggle" href="room.html" id="dropdown04" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Shop</a>
-              <div class="dropdown-menu" aria-labelledby="dropdown04">
-              	<a class="dropdown-item" href="shop.html">Shop</a>
-                <a class="dropdown-item" href="product-single.html">Single Product</a>
-                <a class="dropdown-item" href="room.html">Cart</a>
-                <a class="dropdown-item" href="checkout.html">Checkout</a>
-              </div>
-            </li>
-	          <li class="nav-item"><a href="contact.html" class="nav-link">Contact</a></li>
+	       
+	          <li class="nav-item"><a href="/contact" class="nav-link">Contact</a></li>
 	        <c:if test="${sessionScope.customer != null}">
 	        	 <li class="nav-item dropdown">
 		              <a class="nav-link dropdown-toggle" href="/customer/account/" id="dropdown04" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><span class="icon-user" ></span> Account</a>

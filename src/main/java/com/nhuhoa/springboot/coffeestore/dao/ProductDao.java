@@ -35,13 +35,15 @@ public class ProductDao implements IProductDao {
 			
 			
 		    theResults = theQuery.getResultList();
+		    
+		    session.getTransaction().commit();
 			
 		} catch (Exception e) {
 			e.printStackTrace();
 			session.getTransaction().rollback();
 		}
 		finally {
-			session.getTransaction().commit();
+			
 		    session.close();
 		}
 		
@@ -106,13 +108,15 @@ public class ProductDao implements IProductDao {
 				session.remove(theProduct);
 			}
 			
+			session.getTransaction().commit();
+			
 		} catch (Exception e) {
 			e.printStackTrace();
 			session.getTransaction().rollback();
 		} 
 		finally {
 			
-			session.getTransaction().commit();
+			
 			session.close();
 		}
 	}

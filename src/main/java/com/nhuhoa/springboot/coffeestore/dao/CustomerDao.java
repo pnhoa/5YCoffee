@@ -51,12 +51,14 @@ public class CustomerDao implements ICustomerDao {
 			theQuery.setParameter("enabled", 1);
 			
 			theCustomer = theQuery.getSingleResult();
+			
+			session.getTransaction().commit();
 		} catch (Exception e) {
 			e.printStackTrace();
 			session.getTransaction().rollback();
-			theCustomer = null;
+			
 		} finally {
-			session.getTransaction().commit();
+			
 			session.close();
 		}
 		
@@ -77,6 +79,8 @@ public class CustomerDao implements ICustomerDao {
 			theCustomer.setEnabled(0);
 			
 			session.saveOrUpdate(theCustomer);
+
+			session.getTransaction().commit();
 			
 		} catch (Exception e) {
 			
@@ -84,7 +88,6 @@ public class CustomerDao implements ICustomerDao {
 			session.getTransaction().rollback();
 		} finally {
 			
-			session.getTransaction().commit();
 			session.close();
 		}
 
@@ -95,21 +98,23 @@ public class CustomerDao implements ICustomerDao {
 	@Override
 	public Customer findByUserName(String userName) {
 		Session session = sessionFactory.getCurrentSession();
-		session.beginTransaction();
-		
-		Query<Customer> theQuery = session.createQuery("SELECT c from Customer c JOIN FETCH c.role where c.userName=:userName", Customer.class);
-		theQuery.setParameter("userName", userName);
 		
 		Customer theCustomer = null;
 		
 		try {
+			session.beginTransaction();
+			
+			Query<Customer> theQuery = session.createQuery("SELECT c from Customer c JOIN FETCH c.role where c.userName=:userName", Customer.class);
+			theQuery.setParameter("userName", userName);
+			
 			theCustomer = theQuery.getSingleResult();
+			
+			session.getTransaction().commit();
 		} catch (Exception e) {
-			theCustomer = null;
+			e.printStackTrace();
+		} finally {
+			session.close();
 		}
-		
-		session.getTransaction().commit();
-		session.close();
 		
 		return theCustomer;
 	}
@@ -119,21 +124,23 @@ public class CustomerDao implements ICustomerDao {
 	@Override
 	public Customer findByEmail(String email) {
 		Session session = sessionFactory.getCurrentSession();
-		session.beginTransaction();
-		
-		Query<Customer> theQuery = session.createQuery("SELECT c from Customer c JOIN FETCH c.role where c.email=:email", Customer.class);
-		theQuery.setParameter("email", email);
 		
 		Customer theCustomer = null;
 		
 		try {
+			session.beginTransaction();
+			
+			Query<Customer> theQuery = session.createQuery("SELECT c from Customer c JOIN FETCH c.role where c.email=:email", Customer.class);
+			theQuery.setParameter("email", email);
+			
 			theCustomer = theQuery.getSingleResult();
+			
+			session.getTransaction().commit();
 		} catch (Exception e) {
-			theCustomer = null;
+			e.printStackTrace();
+		} finally {
+			session.close();
 		}
-		
-		session.getTransaction().commit();
-		session.close();
 		
 		return theCustomer;
 	}
@@ -159,7 +166,7 @@ public class CustomerDao implements ICustomerDao {
 		Session session = sessionFactory.getCurrentSession();
 		session.beginTransaction();
 		
-		Query theQuery =session.createQuery("select count(*) from Customer where enabled=:enabled", Long.class);
+		Query<Long> theQuery =session.createQuery("select count(*) from Customer where enabled=:enabled", Long.class);
 		theQuery.setParameter("enabled", 1);
 		
 		Long theTotalItem = (Long) theQuery.uniqueResult();

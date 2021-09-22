@@ -35,7 +35,7 @@
 						    	<c:forEach var="cartItem" items="${sessionScope.myCartItems}" varStatus="loop">
 						    		<input type="hidden" name="id" value="${cartItem.product.id}">
 						    		<tr class="text-center">
-							        <td class="product-remove"><a href="${pageContext.request.contextPath}/checkout/remove/${cartItem.product.id}"><span class="icon-close" onclick="return confirm('Are you sure you want to Remove?');"></span></a></td>
+							        <td class="product-remove"><a href="${pageContext.request.contextPath}/checkout/remove/${cartItem.product.id}" onclick="return confirm('Are you sure you want to Remove?');"><span class="icon-close" ></span></a></td>
 							        
 							        <td class="image-prod"><div class="img" style="background-image:url(/product/thumbnail/${cartItem.product.id}/${cartItem.product.thumbnail});"></div></td>
 							        

@@ -36,11 +36,13 @@ public class OrdersDao implements IOrdersDao {
 			
 			theOrders = (Orders) theQuery.getSingleResult();
 			
+			session.getTransaction().commit();
+			
 		} catch (Exception e) {
 			e.printStackTrace();
 			session.getTransaction().rollback();
 		} finally {
-			session.getTransaction().commit();
+			
 		    session.close();
 		}
 		return theOrders;

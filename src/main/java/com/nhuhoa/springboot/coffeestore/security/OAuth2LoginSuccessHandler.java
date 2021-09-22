@@ -14,6 +14,7 @@ import org.springframework.security.web.authentication.SimpleUrlAuthenticationSu
 import org.springframework.stereotype.Component;
 
 import com.nhuhoa.springboot.coffeestore.dto.CustomerDTO;
+import com.nhuhoa.springboot.coffeestore.model.Cart;
 import com.nhuhoa.springboot.coffeestore.service.web.CustomerService;
 import com.nhuhoa.springboot.coffeestore.utils.Provider;
 
@@ -37,6 +38,8 @@ public class OAuth2LoginSuccessHandler extends SimpleUrlAuthenticationSuccessHan
 		
 		CustomerDTO theCustomerDto = customerService.findByEmail(email);
 		
+		Cart theCart = new Cart();
+		
 		if(theCustomerDto == null) {
 			theCustomerDto = customerService.createCustomerAfteOAuthLoginSuccess(name, email, Provider.GOOGLE);
 		}
@@ -47,6 +50,8 @@ public class OAuth2LoginSuccessHandler extends SimpleUrlAuthenticationSuccessHan
 		// now place in the session
 		HttpSession session = request.getSession();
 		session.setAttribute("customer", theCustomerDto);
+		session.setAttribute("myCart", theCart);
+		session.setAttribute("cartItemNum", theCart.getCartItemNum());
 		
 		logger.info(">>>> Role: " + theCustomerDto.getRole().getCode());
 

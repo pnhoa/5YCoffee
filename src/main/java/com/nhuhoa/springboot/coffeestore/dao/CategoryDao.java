@@ -36,12 +36,21 @@ public class CategoryDao implements ICategoryDao {
 	public Category findById(Long id) {
 		
 		Session session = sessionFactory.getCurrentSession();
-		session.beginTransaction();
 		
-		Category theCategory = session.get(Category.class, id);
+		Category theCategory = null;
 		
-		session.getTransaction().commit();
-	    session.close();
+		try {
+			session.beginTransaction();
+			
+			theCategory = session.get(Category.class, id);
+			
+			session.getTransaction().commit();
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			session.close();
+		}
 		
 		return theCategory;
 	}
@@ -51,18 +60,28 @@ public class CategoryDao implements ICategoryDao {
 		
 		Session session = sessionFactory.getCurrentSession();
 		
-		session.beginTransaction();
+		Category theCategory = null;
 		
-		Query theQuery = session.createQuery("from Category where code=:theCode", Category.class);
+		try {
+			session.beginTransaction();
+			
+			Query<Category> theQuery = session.createQuery("from Category where code=:theCode", Category.class);
+			
+			theQuery.setParameter("theCode", theCode);
+			
+			theCategory =  theQuery.getSingleResult();
+			
+			session.getTransaction().commit();
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			session.close();
+		}
 		
-		theQuery.setParameter("theCode", theCode);
 		
-		Category theResult = (Category) theQuery.getSingleResult();
 		
-		session.getTransaction().commit();
-	    session.close();
-		
-		return theResult;
+		return theCategory;
 	}
 
 	@Override
@@ -79,11 +98,26 @@ public class CategoryDao implements ICategoryDao {
 		
 		Session session = sessionFactory.getCurrentSession();
 		
-		Query theQuery = session.createNamedQuery("delte from Category where id=:theId");
+		try {
+			session.beginTransaction();
+			
+			Query<Category> theQuery = session.createNamedQuery("delete from Category where id=:theId", Category.class);
+			
+			theQuery.setParameter("theId", id);
+			
+			theQuery.executeUpdate();
+			
+			session.getTransaction().commit();
+			
+		} catch (Exception e) {
+			
+			e.printStackTrace();
+			
+		} finally {
+			session.close();
+		}
 		
-		theQuery.setParameter("theId", id);
 		
-		theQuery.executeUpdate();
 		
 	}
 

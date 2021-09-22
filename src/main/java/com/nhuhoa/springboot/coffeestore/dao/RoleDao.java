@@ -56,7 +56,6 @@ public class RoleDao implements IRoleDao {
 			session.close();
 		}
 		
-		
 		return theRole;
 	}
 

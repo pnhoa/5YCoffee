@@ -5,8 +5,6 @@ import java.util.List;
 
 import javax.validation.constraints.NotNull;
 
-import com.nhuhoa.springboot.coffeestore.entity.Product;
-
 public class CategoryDTO extends AbstractDTO<CategoryDTO> {
 
 	@NotNull(message = "is required")
