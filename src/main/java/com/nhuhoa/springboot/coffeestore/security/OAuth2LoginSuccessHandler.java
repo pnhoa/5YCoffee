@@ -1,6 +1,7 @@
 package com.nhuhoa.springboot.coffeestore.security;
 
 import java.io.IOException;
+import java.util.Collection;
 import java.util.logging.Logger;
 
 import javax.servlet.ServletException;
@@ -10,10 +11,12 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
+import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.web.authentication.SimpleUrlAuthenticationSuccessHandler;
 import org.springframework.stereotype.Component;
 
 import com.nhuhoa.springboot.coffeestore.dto.CustomerDTO;
+import com.nhuhoa.springboot.coffeestore.model.Cart;
 import com.nhuhoa.springboot.coffeestore.service.web.CustomerService;
 import com.nhuhoa.springboot.coffeestore.utils.Provider;
 
@@ -35,18 +38,26 @@ public class OAuth2LoginSuccessHandler extends SimpleUrlAuthenticationSuccessHan
 		
 		String email = oAuth2User.getEmail();
 		
+		Collection<? extends GrantedAuthority> role = oAuth2User.getAuthorities();
+		
 		CustomerDTO theCustomerDto = customerService.findByEmail(email);
 		
+		Cart theCart = new Cart();
+		
 		if(theCustomerDto == null) {
-			theCustomerDto = customerService.createCustomerAfteOAuthLoginSuccess(name, email, Provider.GOOGLE);
+			String usernameByEmail   = email.substring(0, email.lastIndexOf("@"));
+			theCustomerDto = customerService.createCustomerAfteOAuthLoginSuccess(name, usernameByEmail, Provider.GOOGLE);
 		}
 		
 		
+		logger.info(">>>Role:" + role);
 		logger.info(">>>> Email: " + email);
 		
 		// now place in the session
 		HttpSession session = request.getSession();
 		session.setAttribute("customer", theCustomerDto);
+		session.setAttribute("myCart", theCart);
+		session.setAttribute("cartItemNum", theCart.getCartItemNum());
 		
 		logger.info(">>>> Role: " + theCustomerDto.getRole().getCode());
 

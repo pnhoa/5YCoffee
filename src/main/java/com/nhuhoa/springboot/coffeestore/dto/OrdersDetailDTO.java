@@ -22,6 +22,8 @@ public class OrdersDetailDTO extends AbstractDTO<OrdersDetailDTO> {
 	
 	private Long productId;
 	
+	private String statusMsg;
+	
 
 	public OrdersDetailDTO() {
 	}
@@ -77,6 +79,14 @@ public class OrdersDetailDTO extends AbstractDTO<OrdersDetailDTO> {
 
 	public void setProductId(Long productId) {
 		this.productId = productId;
+	}
+
+	public String getStatusMsg() {
+		return statusMsg;
+	}
+
+	public void setStatusMsg(String statusMsg) {
+		this.statusMsg = statusMsg;
 	}
 	
 	

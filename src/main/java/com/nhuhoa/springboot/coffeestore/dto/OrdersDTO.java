@@ -15,6 +15,8 @@ public class OrdersDTO extends AbstractDTO<OrdersDTO>{
 	private String address;
 	
 	private Customer customer;
+	
+	
 
 	public OrdersDTO() {
 		
@@ -64,6 +66,10 @@ public class OrdersDTO extends AbstractDTO<OrdersDTO>{
 	public void setCustomer(Customer customer) {
 		this.customer = customer;
 	}
+
+	
+	
+	
 	
 
 }

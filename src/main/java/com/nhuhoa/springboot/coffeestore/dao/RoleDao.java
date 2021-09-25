@@ -37,21 +37,24 @@ public class RoleDao implements IRoleDao {
 	public Role findRoleByCode(String code) {
 		
 		Session session = sessionFactory.getCurrentSession();
-		session.beginTransaction();
-		
-		Query<Role> theQuery = session.createQuery("from Role where code=:roleCode", Role.class);
-		theQuery.setParameter("roleCode", code);
 		
 		Role theRole = null;
 		
 		try {
+			session.beginTransaction();
+			
+			Query<Role> theQuery = session.createQuery("from Role where code=:roleCode", Role.class);
+			theQuery.setParameter("roleCode", code);
+			
 			theRole = theQuery.getSingleResult();
+			
+			session.getTransaction().commit();
 		} catch (Exception e) {
-			theRole = null;
+			e.printStackTrace();
+		} finally {
+
+			session.close();
 		}
-		
-		session.getTransaction().commit();
-		session.close();
 		
 		return theRole;
 	}

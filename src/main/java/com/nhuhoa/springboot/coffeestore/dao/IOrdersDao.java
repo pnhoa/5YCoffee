@@ -4,4 +4,6 @@ import com.nhuhoa.springboot.coffeestore.entity.Orders;
 
 public interface IOrdersDao extends IGeneralDao<Orders> {
 
+	Iterable<Orders> findByCustomer(Long id);
+
 }

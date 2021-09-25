@@ -22,6 +22,12 @@ public class MessageUtil {
 		} else if(message.equals("employee_not_found")) {
 			result.put("message", "Employee not found");
 			result.put("alert","danger");
+		} else if(message.equals("update_success")) {
+			result.put("message", "Update Successful!");
+			result.put("alert","success");
+		} else if(message.equals("sending_success")) {
+			result.put("message", "This message has been sent successfully!");
+			result.put("alert","success");
 		}
 		return result;
 	}

@@ -52,10 +52,9 @@
   <%@ include file="/common/web/footer.jsp" %>
   
   		
-
+	  
 	  <script src="<c:url value='/template/web/js/jquery.min.js' />"></script>
 	  <script src="<c:url value='/template/web/js/jquery-migrate-3.0.1.min.js' />"></script>
-	  <script src="<c:url value='/template/web/js/popper.min.js' />"></script>
 	  <script src="<c:url value='/template/web/js/bootstrap.min.js' />"></script>
 	  <script src="<c:url value='/template/web/js/jquery.easing.1.3.js' />"></script>
 	  <script src="<c:url value='/template/web/js/jquery.waypoints.min.js' />"></script>
@@ -67,8 +66,6 @@
 	  <script src="<c:url value='/template/web/js/bootstrap-datepicker.js' />"></script>
 	  <script src="<c:url value='/template/web/js/jquery.timepicker.min.js' />"></script>
 	  <script src="<c:url value='/template/web/js/scrollax.min.js' />"></script>
-	  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBVWaKrjvy3MaE7SQ74_uJiULgl1JY0H2s&sensor=false"></script>
-	  <script src="<c:url value='/template/web/js/google-map.js' />"></script>
 	  <script src="<c:url value='/template/web/js/main.js' />"></script>
 	
 </body>

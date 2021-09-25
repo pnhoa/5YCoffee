@@ -44,6 +44,10 @@ public class ProductServiceImpl implements ProductService {
 		
 		Product theProduct = productDao.findById(id);
 		
+		if(theProduct == null) {
+			return null;
+		}
+		
 		ProductDTO theProductDTO = mapper.map(theProduct, ProductDTO.class);
 		
 		theProductDTO.setCategoryCode(theProduct.getCategory().getCode());

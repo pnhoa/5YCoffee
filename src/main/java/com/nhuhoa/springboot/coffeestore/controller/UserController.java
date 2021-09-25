@@ -263,7 +263,7 @@ public class UserController {
 	}
 	
 	@PostMapping("/change-roles")
-	public String processChangeRoles(@ModelAttribute("user") UserDTO theUserDto) {
+	public String processingChangeRoles(@ModelAttribute("user") UserDTO theUserDto) {
 		
 		String theEmail = theUserDto.getEmail();
 		

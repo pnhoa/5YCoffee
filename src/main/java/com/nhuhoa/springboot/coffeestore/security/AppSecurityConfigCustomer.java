@@ -40,7 +40,7 @@ public class AppSecurityConfigCustomer extends WebSecurityConfigurerAdapter {
 		 http.authorizeRequests()
 		 	.antMatchers("/oauth2/**").permitAll()
 		 	.antMatchers("/", "/home", "/services", "/menu", "/product", "/blog","/about").permitAll()
-			.antMatchers("/checkout/**", "/cart").hasRole("CUSTOMER")
+			.antMatchers("/checkout/**", "/cart", "/orders/**", "/account/**").hasRole("USER")
 	
 			.and()
 			.formLogin()

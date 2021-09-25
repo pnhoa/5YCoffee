@@ -17,7 +17,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.nhuhoa.springboot.coffeestore.entity.Customer;
 import com.nhuhoa.springboot.coffeestore.service.api.ICustomerService;
-import com.nhuhoa.springboot.coffeestore.service.web.CustomerService;
 
 @RestController
 @CrossOrigin("*")
@@ -27,8 +26,7 @@ public class CustomerRestController {
 	@Autowired
 	private ICustomerService customerService;
 	
-	@Autowired
-	private CustomerService customerServiceWeb;
+	
 
 	@PostMapping
 	public ResponseEntity<Customer> createNewCustomer(@RequestBody Customer customer) {

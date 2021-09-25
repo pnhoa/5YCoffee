@@ -81,6 +81,8 @@ public class CategoryServiceImpl implements CategoryService {
 	@Override
 	public Category findOneByCode(String theCode) {
 		Category theCategory = categoryDao.findOneByCode(theCode);
+		
+		
 		return theCategory;
 	}
 

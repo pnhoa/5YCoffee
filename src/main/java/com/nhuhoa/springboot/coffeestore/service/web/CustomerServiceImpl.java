@@ -1,10 +1,8 @@
 package com.nhuhoa.springboot.coffeestore.service.web;
 
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
-
 
 import org.modelmapper.ModelMapper;
 import org.modelmapper.TypeToken;
@@ -66,11 +64,23 @@ public class CustomerServiceImpl implements CustomerService {
 		
 		CustomerDTO theCustomerDTO = mapper.map(theCustomer, CustomerDTO.class);
 		
+		// set birthday String display in view
+		Date birthday = theCustomerDTO.getBirthday();	
+		String birthdayString = null;
+		if(birthday != null) {
+			birthdayString = DateUtils.dateToString(birthday);
+		}
+		theCustomerDTO.setBirthdayString(birthdayString);	
+		
+		theCustomerDTO.setBirthdayString(birthdayString);
+		
 		return theCustomerDTO;
 	}
 
 	@Override
 	public CustomerDTO save(CustomerDTO theCustomerDTO) {
+		
+		// check birthday
 		
 		String birthdayString = theCustomerDTO.getBirthdayString();
 		
@@ -87,21 +97,44 @@ public class CustomerServiceImpl implements CustomerService {
 		
 		Customer theCustomer = mapper.map(theCustomerDTO, Customer.class);
 		
-		if(theCustomer.getId() == null) {
-			theCustomer.setCreatedDate(Calendar.getInstance().getTime());
-		} else {
-			theCustomer.setModifiedDate(Calendar.getInstance().getTime());
+		// check change password
+		String theNewPassword = theCustomerDTO.getPassword();
+		
+		if(theNewPassword == null && theCustomerDTO.getId() != null) {
+			
+			Customer theOldCustomer = customerDao.findById(theCustomerDTO.getId() );
+			
+			theCustomer.setPassword(theOldCustomer.getPassword());
+			
+		} else if(theNewPassword != null && theCustomerDTO.getId() != null) {
+			
+			theCustomer.setPassword(passwordEncoder.encode(theCustomer.getPassword()));
 		}
-		theCustomer.setRole(roleDao.findRoleByCode("ROLE_CUSTOMER"));
-		theCustomer.setPassword(passwordEncoder.encode(theCustomerDTO.getPassword()));
+		
+		if(theCustomer.getId() == null) {
+			
+			theCustomer.setCreatedDate(new Date());
+			
+			theCustomer.setCreatedBy(theCustomerDTO.getUserName());
+			
+			theCustomer.setPassword(passwordEncoder.encode(theCustomerDTO.getPassword()));
+			
+			
+		} else {
+			
+			theCustomer.setModifiedDate(new Date());
+			
+			theCustomer.setModefiedBy(theCustomerDTO.getUserName());
+		}
+		
+		theCustomer.setRole(roleDao.findRoleByCode("ROLE_USER"));
+		
 		theCustomer.setProvider(Provider.LOCAL);
 		
 		Customer theCustomerNew = customerDao.save(theCustomer);
 		
 		theCustomerDTO.setId(theCustomerNew.getId());
-		theCustomerDTO.setEnabled(1);
-		
-		
+
 		return theCustomerDTO;
 	}
 
@@ -124,6 +157,16 @@ public class CustomerServiceImpl implements CustomerService {
 		
 		CustomerDTO theCustomerDTO = mapper.map(theCustomer, CustomerDTO.class);
 		
+		// set birthday String display in view
+		Date birthday = theCustomerDTO.getBirthday();	
+		String birthdayString = null;
+		if(birthday != null) {
+			birthdayString = DateUtils.dateToString(birthday);
+		}
+		theCustomerDTO.setBirthdayString(birthdayString);	
+		
+		theCustomerDTO.setBirthdayString(birthdayString);
+		
 		return theCustomerDTO;
 	}
 	
@@ -138,6 +181,16 @@ public class CustomerServiceImpl implements CustomerService {
 		
 		CustomerDTO theCustomerDTO = mapper.map(theCustomer, CustomerDTO.class);
 		
+		// set birthday String display in view
+		Date birthday = theCustomerDTO.getBirthday();	
+		String birthdayString = null;
+		if(birthday != null) {
+			birthdayString = DateUtils.dateToString(birthday);
+		}
+		theCustomerDTO.setBirthdayString(birthdayString);	
+		
+		theCustomerDTO.setBirthdayString(birthdayString);
+
 		return theCustomerDTO;
 	}
 	
@@ -177,7 +230,7 @@ public class CustomerServiceImpl implements CustomerService {
 		theCustomer.setEmail(email);
 		theCustomer.setProvider(provider);
 		theCustomer.setCreatedDate(new Date());
-		theCustomer.setRole(roleDao.findRoleByCode("ROLE_CUSTOMER"));
+		theCustomer.setRole(roleDao.findRoleByCode("ROLE_USER"));
 		theCustomer.setPassword(passwordEncoder.encode("kjsd1@Kjajs"));
 		theCustomer.setEnabled(1);
 		
@@ -187,7 +240,7 @@ public class CustomerServiceImpl implements CustomerService {
 		
 		theCustomerDTO.setId(theCustomerDTO.getId());
 		theCustomerDTO.setEnabled(1);
-		theCustomerDTO.setRole(roleDao.findRoleByCode("ROLE_CUSTOMER"));
+		theCustomerDTO.setRole(roleDao.findRoleByCode("ROLE_USER"));
 		
 		
 		return theCustomerDTO;

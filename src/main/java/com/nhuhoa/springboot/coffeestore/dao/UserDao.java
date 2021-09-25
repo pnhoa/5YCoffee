@@ -52,12 +52,13 @@ public class UserDao implements IUserDao {
 			theQuery.setParameter("enabled", 1);
 			
 			theUser = theQuery.getSingleResult();
+			
+			session.getTransaction().commit();
 		} catch (Exception e) {
 			e.printStackTrace();
 			session.getTransaction().rollback();
 			theUser = null;
 		} finally {
-			//session.getTransaction().commit();
 			session.close();
 		}
 		
@@ -93,13 +94,15 @@ public class UserDao implements IUserDao {
 			
 			session.saveOrUpdate(theUser);
 			
+			session.getTransaction().commit();
+			
 		} catch (Exception e) {
 			
 			e.printStackTrace();
 			session.getTransaction().rollback();
 		} finally {
 			
-			session.getTransaction().commit();
+			
 			session.close();
 		}
 
@@ -108,21 +111,23 @@ public class UserDao implements IUserDao {
 	@Override
 	public User findByUserName(String userName) {
 		Session session = sessionFactory.getCurrentSession();
-		session.beginTransaction();
-		
-		Query<User> theQuery = session.createQuery("SELECT u from User u JOIN FETCH u.roles where username=:userName", User.class);
-		theQuery.setParameter("userName", userName);
 		
 		User theUser = null;
 		
 		try {
+			session.beginTransaction();
+			
+			Query<User> theQuery = session.createQuery("SELECT u from User u JOIN FETCH u.roles where username=:userName", User.class);
+			theQuery.setParameter("userName", userName);
+			
 			theUser = theQuery.getSingleResult();
+			
+			session.getTransaction().commit();
 		} catch (Exception e) {
-			theUser = null;
+			e.printStackTrace();
+		} finally {
+			session.close();
 		}
-		
-		session.getTransaction().commit();
-		session.close();
 		
 		return theUser;
 	}
@@ -130,22 +135,25 @@ public class UserDao implements IUserDao {
 	@Override
 	public User findByEmail(String email) {
 		Session session = sessionFactory.getCurrentSession();
-		session.beginTransaction();
-		
-		Query<User> theQuery = session.createQuery("SELECT u from User u JOIN FETCH u.roles where email=:email", User.class);
-		theQuery.setParameter("email", email);
-		
+
 		User theUser = null;
 		
 		try {
+			session.beginTransaction();
+			
+			Query<User> theQuery = session.createQuery("SELECT u from User u JOIN FETCH u.roles where email=:email", User.class);
+			theQuery.setParameter("email", email);
+			
 			theUser = theQuery.getSingleResult();
+			
+			session.getTransaction().commit();
 		} catch (Exception e) {
-			theUser = null;
+			
+			e.printStackTrace();
+			
+		} finally {
+			session.close();
 		}
-		
-		session.getTransaction().commit();
-		session.close();
-		
 		return theUser;
 	}
 
@@ -155,7 +163,7 @@ public class UserDao implements IUserDao {
 		Session session = sessionFactory.getCurrentSession();
 		session.beginTransaction();
 		
-		Query theQuery =session.createQuery("select count(*) from User where enabled=:enabled", Long.class);
+		Query<Long> theQuery =session.createQuery("select count(*) from User where enabled=:enabled", Long.class);
 		theQuery.setParameter("enabled", 1);
 		
 		Long theTotalItem = (Long) theQuery.uniqueResult();

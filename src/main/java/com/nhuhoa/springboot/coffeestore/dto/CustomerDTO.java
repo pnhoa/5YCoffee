@@ -4,7 +4,6 @@ import java.sql.Timestamp;
 import java.util.Date;
 
 import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
 
 import com.nhuhoa.springboot.coffeestore.entity.Role;
 import com.nhuhoa.springboot.coffeestore.validation.CheckDateFormat;
@@ -24,13 +23,9 @@ public class CustomerDTO extends AbstractDTO<CustomerDTO> {
 	@NotNull(message = "is required")
 	private String userName;
 	
-	@NotNull(message = "is required")
-	@Size(min = 8, message = "lenght must be longer than 8")
 	@ValidPassword
 	private String password;
 	
-	@NotNull(message = "is required")
-	@Size(min = 8, message = "lenght must be longer than 8")
 	@ValidPassword
 	private String matchingPassword;
 	
@@ -49,6 +44,9 @@ public class CustomerDTO extends AbstractDTO<CustomerDTO> {
 	@ValidEmail
 	@NotNull(message = "is required")
 	private String email;
+	
+	@ValidPassword
+	private String theOldPassword;
 	
 	@CheckDateFormat(pattern = "dd/MM/yyyy")
 	private String birthdayString;
@@ -183,6 +181,14 @@ public class CustomerDTO extends AbstractDTO<CustomerDTO> {
 
 	public void setRoleCode(String roleCode) {
 		this.roleCode = roleCode;
+	}
+
+	public String getTheOldPassword() {
+		return theOldPassword;
+	}
+
+	public void setTheOldPassword(String theOldPassword) {
+		this.theOldPassword = theOldPassword;
 	}
 	
 	

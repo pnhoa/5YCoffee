@@ -200,7 +200,7 @@ public class UserServiceImpl implements UserService {
 	public UserDetails loadUserByUsername(String userName) throws UsernameNotFoundException {
 		User user = userDao.findByUserName(userName);
 		 
-	        if (user == null) {
+	        if (user == null || user.getEnabled() == 0) {
 	            throw new UsernameNotFoundException("User " + userName + " was not found in the database");
 	        }
 	 
