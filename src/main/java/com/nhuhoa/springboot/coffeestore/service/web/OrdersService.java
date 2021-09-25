@@ -11,4 +11,6 @@ public interface OrdersService extends GeneralService<OrdersDTO> {
 
 	public Iterable<OrdersDTO> findByCustomer(Long id);
 
+	public Long count();
+
 }

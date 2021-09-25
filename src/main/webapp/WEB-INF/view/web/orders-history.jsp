@@ -34,7 +34,7 @@
 								<tr>		
 									<td> ${tempOrderItem.id }</td>
 									<td> ${tempOrderItem.createdDate }</td>
-									<td> ${tempOrderItem.product.name }</td>
+									<td><a href="/product?id=${tempOrderItem.product.id }"> ${tempOrderItem.product.name }</a></td>
 									<td> ${tempOrderItem.quantity }</td>
 									<td> ${tempOrderItem.totalPrice }</td>
 									<td> ${tempOrderItem.statusMsg }</td>

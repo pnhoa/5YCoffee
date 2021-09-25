@@ -3,6 +3,7 @@ package com.nhuhoa.springboot.coffeestore.service.web;
 import java.util.Date;
 
 import org.modelmapper.ModelMapper;
+import org.modelmapper.TypeToken;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -24,14 +25,29 @@ public class ContactServiceIml implements ContactService {
 
 	@Override
 	public Iterable<ContactDTO> findAll(IPaging paging) {
-		// TODO Auto-generated method stub
-		return null;
+
+		Iterable<Contact> theContacts = contactDao.findAll(paging); 
+		
+		TypeToken<Iterable<ContactDTO>> typeToken = new TypeToken<Iterable<ContactDTO>>() {
+		};
+
+		Iterable<ContactDTO> theContactDTOs = mapper.map(theContacts, typeToken.getType());
+		
+		return theContactDTOs;
 	}
 
 	@Override
 	public ContactDTO findById(Long id) {
-		// TODO Auto-generated method stub
-		return null;
+		
+		Contact theContact = contactDao.findById(id);
+		
+		if(theContact == null) {
+			return null;
+		}
+		
+		ContactDTO theContactDTO = mapper.map(theContact, ContactDTO.class);
+		
+		return theContactDTO;
 	}
 
 	@Override
@@ -51,14 +67,27 @@ public class ContactServiceIml implements ContactService {
 
 	@Override
 	public void remove(Long id) {
-		// TODO Auto-generated method stub
-
+		
+		contactDao.remove(id);
 	}
 
 	@Override
 	public Iterable<ContactDTO> search(IPaging paging, String theSearchValue) {
-		// TODO Auto-generated method stub
-		return null;
+		
+		Iterable<Contact> theContacts = contactDao.search(paging, theSearchValue);
+		
+		TypeToken<Iterable<ContactDTO>> typeToken = new TypeToken<Iterable<ContactDTO>>() {
+		};
+
+		Iterable<ContactDTO> theContactDTOs = mapper.map(theContacts, typeToken.getType());
+		
+		return theContactDTOs;
+	}
+
+	@Override
+	public Long count() {
+		
+		return contactDao.count();
 	}
 
 }

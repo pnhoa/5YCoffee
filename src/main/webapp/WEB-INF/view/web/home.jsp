@@ -277,28 +277,28 @@
     	<div class="container-wrap">
     		<div class="row no-gutters">
 					<div class="col-md-3 ftco-animate">
-						<a href="gallery.html" class="gallery img d-flex align-items-center" style="background-image: url(./product/thumbnail/customer/IMG_5125.jpg);">
+						<a href="" class="gallery img d-flex align-items-center" style="background-image: url(./product/thumbnail/customer/IMG_5125.jpg);">
 							<div class="icon mb-4 d-flex align-items-center justify-content-center">
     						<span class="icon-search"></span>
     					</div>
 						</a>
 					</div>
 					<div class="col-md-3 ftco-animate">
-						<a href="gallery.html" class="gallery img d-flex align-items-center" style="background-image: url(./product/thumbnail/customer/IMG_9547.jpg);">
+						<a href="" class="gallery img d-flex align-items-center" style="background-image: url(./product/thumbnail/customer/IMG_9547.jpg);">
 							<div class="icon mb-4 d-flex align-items-center justify-content-center">
     						<span class="icon-search"></span>
     					</div>
 						</a>
 					</div>
 					<div class="col-md-3 ftco-animate">
-						<a href="gallery.html" class="gallery img d-flex align-items-center" style="background-image: url(./product/thumbnail/customer/IMG_5463.jpg);">
+						<a href="" class="gallery img d-flex align-items-center" style="background-image: url(./product/thumbnail/customer/IMG_5463.jpg);">
 							<div class="icon mb-4 d-flex align-items-center justify-content-center">
     						<span class="icon-search"></span>
     					</div>
 						</a>
 					</div>
 					<div class="col-md-3 ftco-animate">
-						<a href="gallery.html" class="gallery img d-flex align-items-center" style="background-image: url(./product/thumbnail/customer/42b61af3f36f0e31577e.jpg);">
+						<a href="" class="gallery img d-flex align-items-center" style="background-image: url(./product/thumbnail/customer/42b61af3f36f0e31577e.jpg);">
 							<div class="icon mb-4 d-flex align-items-center justify-content-center">
     						<span class="icon-search"></span>
     					</div>

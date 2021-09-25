@@ -29,7 +29,29 @@ public class OrdersServiceImpl implements OrdersService {
 
 	@Override
 	public Iterable<OrdersDTO> findAll(IPaging paging) {
-		// TODO Auto-generated method stub
+
+
+		Iterable<Orders> theOrders = ordersDao.findAll(paging);
+		
+		List<OrdersDTO> theOrdersDtos = new ArrayList<OrdersDTO>();
+		
+		for(Orders theOrder : theOrders) {
+			OrdersDTO theOrdersDto = new OrdersDTO();
+			
+			theOrdersDto.setId(theOrder.getId());
+			theOrdersDto.setCreatedBy(theOrder.getCreatedBy());
+			theOrdersDto.setCreatedDate((Timestamp)theOrder.getCreatedDate());
+			theOrdersDto.setModifiedBy(theOrder.getModefiedBy());
+			theOrdersDto.setModifiedDate((Timestamp)theOrder.getModifiedDate());
+			theOrdersDto.setAddress(theOrder.getAddress());
+			theOrdersDto.setNote(theOrder.getNote());
+			
+			theOrdersDtos.add(theOrdersDto);
+			
+			
+		}
+		
+		
 		return null;
 	}
 
@@ -129,15 +151,18 @@ public class OrdersServiceImpl implements OrdersService {
 			
 		}
 		
-		//TypeToken<Iterable<OrdersDTO>> typeToken = new TypeToken<Iterable<OrdersDTO>>() {
-		//};
-
-		//Iterable<OrdersDTO> theOrdersDtos = mapper.map(theOrders, typeToken.getType());
+		
 		
 		
 		return theOrdersDtos;
 		
 		
+	}
+
+	@Override
+	public Long count() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 	

@@ -34,7 +34,7 @@ public class AppSecurityConfigAdmin extends WebSecurityConfigurerAdapter {
 	protected void configure(HttpSecurity http) throws Exception {
 		 http.antMatcher("/admin/**")
          		.authorizeRequests()
-         		.antMatchers("/admin","/admin/", "/admin/customers/list", "/admin/users/list", "/admin/products/list").hasRole("EMPLOYEE")
+         		.antMatchers("/admin","/admin/", "/admin/customers/list", "/admin/users/list", "/admin/products/list", "/admin/contacts/**").hasRole("EMPLOYEE")
          		.antMatchers("/admin/products/edit**", "/admin/**/**").hasRole("MANAGER")
          		.antMatchers("/admin/users/edit**","/admin/users/roles**").hasRole("ADMIN")
          		.antMatchers("admin/login/**").permitAll()

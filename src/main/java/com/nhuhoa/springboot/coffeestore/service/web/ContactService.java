@@ -4,5 +4,6 @@ import com.nhuhoa.springboot.coffeestore.dto.ContactDTO;
 
 
 public interface ContactService extends GeneralService<ContactDTO> {
-
+	
+	Long count();
 }

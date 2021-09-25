@@ -127,7 +127,7 @@ public class CustomerServiceImpl implements CustomerService {
 			theCustomer.setModefiedBy(theCustomerDTO.getUserName());
 		}
 		
-		theCustomer.setRole(roleDao.findRoleByCode("ROLE_CUSTOMER"));
+		theCustomer.setRole(roleDao.findRoleByCode("ROLE_USER"));
 		
 		theCustomer.setProvider(Provider.LOCAL);
 		
@@ -230,7 +230,7 @@ public class CustomerServiceImpl implements CustomerService {
 		theCustomer.setEmail(email);
 		theCustomer.setProvider(provider);
 		theCustomer.setCreatedDate(new Date());
-		theCustomer.setRole(roleDao.findRoleByCode("ROLE_CUSTOMER"));
+		theCustomer.setRole(roleDao.findRoleByCode("ROLE_USER"));
 		theCustomer.setPassword(passwordEncoder.encode("kjsd1@Kjajs"));
 		theCustomer.setEnabled(1);
 		
@@ -240,7 +240,7 @@ public class CustomerServiceImpl implements CustomerService {
 		
 		theCustomerDTO.setId(theCustomerDTO.getId());
 		theCustomerDTO.setEnabled(1);
-		theCustomerDTO.setRole(roleDao.findRoleByCode("ROLE_CUSTOMER"));
+		theCustomerDTO.setRole(roleDao.findRoleByCode("ROLE_USER"));
 		
 		
 		return theCustomerDTO;
