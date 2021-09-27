@@ -45,14 +45,17 @@ public class OrdersServiceImpl implements OrdersService {
 			theOrdersDto.setModifiedDate((Timestamp)theOrder.getModifiedDate());
 			theOrdersDto.setAddress(theOrder.getAddress());
 			theOrdersDto.setNote(theOrder.getNote());
+			theOrdersDto.setTotalPrice(theOrder.getTotalPrice());
+
+			theOrdersDto.setCustomer(theOrder.getCustomer());
+			
 			
 			theOrdersDtos.add(theOrdersDto);
 			
 			
 		}
-		
-		
-		return null;
+
+		return theOrdersDtos;
 	}
 
 	@Override
@@ -97,8 +100,32 @@ public class OrdersServiceImpl implements OrdersService {
 
 	@Override
 	public Iterable<OrdersDTO> search(IPaging paging, String theSearchValue) {
-		// TODO Auto-generated method stub
-		return null;
+		
+		Iterable<Orders> theOrders = ordersDao.search(paging, theSearchValue);
+		
+		List<OrdersDTO> theOrdersDtos = new ArrayList<OrdersDTO>();
+		
+		for(Orders theOrder : theOrders) {
+			OrdersDTO theOrdersDto = new OrdersDTO();
+			
+			theOrdersDto.setId(theOrder.getId());
+			theOrdersDto.setCreatedBy(theOrder.getCreatedBy());
+			theOrdersDto.setCreatedDate((Timestamp)theOrder.getCreatedDate());
+			theOrdersDto.setModifiedBy(theOrder.getModefiedBy());
+			theOrdersDto.setModifiedDate((Timestamp)theOrder.getModifiedDate());
+			theOrdersDto.setAddress(theOrder.getAddress());
+			theOrdersDto.setNote(theOrder.getNote());
+			theOrdersDto.setTotalPrice(theOrder.getTotalPrice());
+
+			theOrdersDto.setCustomer(theOrder.getCustomer());
+			
+			
+			theOrdersDtos.add(theOrdersDto);
+			
+			
+		}
+
+		return theOrdersDtos;
 	}
 
 	@Override
@@ -161,8 +188,8 @@ public class OrdersServiceImpl implements OrdersService {
 
 	@Override
 	public Long count() {
-		// TODO Auto-generated method stub
-		return null;
+		
+		return ordersDao.count();
 	}
 
 	

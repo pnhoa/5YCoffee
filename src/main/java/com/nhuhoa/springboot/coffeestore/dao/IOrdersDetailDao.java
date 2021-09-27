@@ -8,4 +8,6 @@ public interface IOrdersDetailDao extends IGeneralDao<OrdersDetail> {
 
 	List<OrdersDetail> findByOrderId(Long theId);
 
+	void updateStatus(Long id, int status);
+
 }

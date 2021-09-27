@@ -17,8 +17,24 @@ public class OrdersDao implements IOrdersDao {
 
 	@Override
 	public Iterable<Orders> findAll(IPaging paging) {
-		// TODO Auto-generated method stub
-		return null;
+		
+		Session session = sessionFactory.getCurrentSession();
+		
+		session.beginTransaction();
+		Query<Orders> theQuery = session.createQuery("select o from Orders o JOIN FETCH o.customer ORDER BY o.id DESC", Orders.class);
+		if(paging.getLimit() != null) {
+			theQuery.setFirstResult(paging.getOffset());
+			theQuery.setMaxResults(paging.getLimit());
+		}
+		
+		
+		
+		Iterable<Orders> theOrders = theQuery.getResultList();
+		
+		session.getTransaction().commit();
+		session.close();
+		
+		return theOrders;
 	}
 
 	@Override
@@ -31,7 +47,7 @@ public class OrdersDao implements IOrdersDao {
 		try {
 			session.beginTransaction();
 			
-			Query<Orders> theQuery = session.createQuery("select o from Orders o JOIN FETCH o.customer JOIN FETCH o.user where o.id=:id", Orders.class);
+			Query<Orders> theQuery = session.createQuery("select o from Orders o JOIN FETCH o.customer where o.id=:id", Orders.class);
 			theQuery.setParameter("id", id);
 			
 			theOrders = (Orders) theQuery.getSingleResult();
@@ -70,14 +86,47 @@ public class OrdersDao implements IOrdersDao {
 
 	@Override
 	public Long count() {
-		// TODO Auto-generated method stub
-		return null;
+		Session session = sessionFactory.getCurrentSession();
+		session.beginTransaction();
+		
+		Query<Long> theQuery =session.createQuery("select count(*) from Orders", Long.class);
+		
+		Long theTotalItem = (Long) theQuery.uniqueResult();
+		
+		session.getTransaction().commit();
+		session.close();
+		
+		return theTotalItem;
 	}
 
 	@Override
 	public Iterable<Orders> search(IPaging paging, String theSearchValue) {
-		// TODO Auto-generated method stub
-		return null;
+		
+		Session session = sessionFactory.getCurrentSession();
+		session.beginTransaction();
+		
+		Query<Orders> theQuery = null;
+
+		if (theSearchValue != null && theSearchValue.trim().length() > 0) {
+			 theQuery = session.createQuery("select o from Orders o JOIN FETCH o.customer where o.id=:theId ORDER BY o.id DESC", Orders.class);
+			 theQuery.setParameter("theId", Long.parseLong(theSearchValue));
+		} else {
+			session.getTransaction().commit();
+			session.close();
+			return null;
+		}
+
+		if(paging.getLimit() != null) {
+			theQuery.setFirstResult(paging.getOffset());
+			theQuery.setMaxResults(paging.getLimit());
+		}
+		
+		Iterable<Orders> theOrders = theQuery.getResultList();
+		
+		session.getTransaction().commit();
+		session.close();
+		
+		return theOrders;
 	}
 
 	@Override

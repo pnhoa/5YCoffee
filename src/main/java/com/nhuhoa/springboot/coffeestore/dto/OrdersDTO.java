@@ -3,6 +3,7 @@ package com.nhuhoa.springboot.coffeestore.dto;
 import java.math.BigDecimal;
 
 import com.nhuhoa.springboot.coffeestore.entity.Customer;
+import com.nhuhoa.springboot.coffeestore.entity.User;
 
 public class OrdersDTO extends AbstractDTO<OrdersDTO>{
 	
@@ -16,7 +17,7 @@ public class OrdersDTO extends AbstractDTO<OrdersDTO>{
 	
 	private Customer customer;
 	
-	
+	private User user;
 
 	public OrdersDTO() {
 		
@@ -67,9 +68,12 @@ public class OrdersDTO extends AbstractDTO<OrdersDTO>{
 		this.customer = customer;
 	}
 
-	
-	
-	
-	
+	public User getUser() {
+		return user;
+	}
 
+	public void setUser(User user) {
+		this.user = user;
+	}
+	
 }

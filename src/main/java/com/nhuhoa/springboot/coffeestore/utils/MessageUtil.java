@@ -28,6 +28,9 @@ public class MessageUtil {
 		} else if(message.equals("sending_success")) {
 			result.put("message", "This message has been sent successfully!");
 			result.put("alert","success");
+		} else if(message.equals("not_found")) {
+			result.put("message", "Not found!");
+			result.put("alert","danger");
 		}
 		return result;
 	}

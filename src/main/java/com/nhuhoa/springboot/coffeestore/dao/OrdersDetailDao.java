@@ -81,4 +81,32 @@ public class OrdersDetailDao implements IOrdersDetailDao {
 		return theResults;
 	}
 
+	@Override
+	public void updateStatus(Long id, int status) {
+		
+		Session session = sessionFactory.getCurrentSession();
+		
+		try {
+			session.beginTransaction();
+			
+			Query<?> theQuery = session.createSQLQuery("update orders_detail  set status=:theStatus"+" WHERE id=:theId");
+			theQuery.setParameter("theStatus", status);
+			theQuery.setParameter("theId", id);
+			
+			theQuery.executeUpdate();
+			
+			session.getTransaction().commit();
+			
+		} catch(Exception e ) {
+			
+			e.printStackTrace();
+			session.getTransaction().rollback();
+			
+		} finally {
+			
+			session.close();
+		}
+		
+	}
+
 }

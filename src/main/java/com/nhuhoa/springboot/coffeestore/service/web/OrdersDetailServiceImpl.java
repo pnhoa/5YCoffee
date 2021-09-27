@@ -3,7 +3,9 @@ package com.nhuhoa.springboot.coffeestore.service.web;
 import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -101,11 +103,15 @@ public class OrdersDetailServiceImpl implements OrdersDetailService {
 			theOrdersDetailDto.setCreatedDate((Timestamp) theOrdersDetail.getCreatedDate());
 			theOrdersDetailDto.setQuantity(theOrdersDetail.getQuantity());
 			theOrdersDetailDto.setTotalPrice(theOrdersDetail.getTotalPrice());
+			theOrdersDetailDto.setStatus(theOrdersDetail.getStatus());
 			if(theOrdersDetail.getStatus() == 1) {
 				theOrdersDetailDto.setStatusMsg("Processing");
+			} else if(theOrdersDetail.getStatus() == 2) {
+				theOrdersDetailDto.setStatusMsg("Done");
 			} else {
-				theOrdersDetailDto.setStatusMsg("Delivery successful");
+				theOrdersDetailDto.setStatusMsg("Cancel");
 			}
+			theOrdersDetailDto.setStatusMap(this.getStatusMap());
 			theOrdersDetailDto.setProduct(theOrdersDetail.getProduct());
 			
 			theOrdersDetailDtos.add(theOrdersDetailDto);
@@ -118,5 +124,25 @@ public class OrdersDetailServiceImpl implements OrdersDetailService {
 		
 		return theOrdersDetailDtos;
 	}
+
+	@Override
+	public Map<Integer, String> getStatusMap() {
+		Map<Integer, String> result = new HashMap<Integer, String>();
+		
+		result.put(0, "Cancel");
+		result.put(1, "Processing");
+		result.put(2, "Done");
+		
+		return result;
+	}
+
+	@Override
+	public void updateStatus(Long id, int status) {
+		
+		ordersDetailDao.updateStatus(id,status);
+		
+	}
+	
+	
 
 }

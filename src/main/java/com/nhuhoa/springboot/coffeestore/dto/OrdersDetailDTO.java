@@ -1,6 +1,7 @@
 package com.nhuhoa.springboot.coffeestore.dto;
 
 import java.math.BigDecimal;
+import java.util.Map;
 
 import javax.validation.constraints.Min;
 
@@ -23,6 +24,8 @@ public class OrdersDetailDTO extends AbstractDTO<OrdersDetailDTO> {
 	private Long productId;
 	
 	private String statusMsg;
+	
+	private Map<Integer, String> statusMap;
 	
 
 	public OrdersDetailDTO() {
@@ -87,6 +90,14 @@ public class OrdersDetailDTO extends AbstractDTO<OrdersDetailDTO> {
 
 	public void setStatusMsg(String statusMsg) {
 		this.statusMsg = statusMsg;
+	}
+
+	public Map<Integer, String> getStatusMap() {
+		return statusMap;
+	}
+
+	public void setStatusMap(Map<Integer, String> statusMap) {
+		this.statusMap = statusMap;
 	}
 	
 	

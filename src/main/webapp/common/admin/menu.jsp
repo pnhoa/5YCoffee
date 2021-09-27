@@ -38,7 +38,7 @@
             <a href="#" class="dropdown-toggle">
                 <i class="menu-icon fa fa-list"></i>
                 <span class="menu-text"></span>
-                Customer Info
+                Customer
                 <b class="arrow fa fa-angle-down"></b>
             </a>
             <b class="arrow"></b>
@@ -46,7 +46,7 @@
                 <li>
                     <a href='<c:url value="/admin/customers/list?page=1&limit=5"/>'>
                         <i class="menu-icon fa fa-caret-right"></i>
-                        Customers
+                        List
                     </a>
                     <b class="arrow"></b>
                 </li>
@@ -58,7 +58,7 @@
             <a href="#" class="dropdown-toggle">
                 <i class="menu-icon fa fa-product-hunt"></i>
                 <span class="menu-text"></span>
-                Product Info
+                Product
                 <b class="arrow fa fa-angle-down"></b>
             </a>
             <b class="arrow"></b>
@@ -66,7 +66,7 @@
                 <li>
                     <a href='<c:url value="/admin/products/list?page=1&limit=5"/>'>
                         <i class="menu-icon fa fa-caret-right"></i>
-                        Products
+                        List
                     </a>
                     <b class="arrow"></b>
                 </li>
@@ -79,7 +79,7 @@
 	            <a href="#" class="dropdown-toggle">
 	                <i class="menu-icon fa fa-users"></i>
 	                <span class="menu-text"></span>
-	                Employee Info
+	                Employee
 	                <b class="arrow fa fa-angle-down"></b>
 	            </a>
 	            <b class="arrow"></b>
@@ -87,7 +87,7 @@
 	                <li>
 	                    <a href='<c:url value="/admin/users/list?page=1&limit=5"/>'>
 	                        <i class="menu-icon fa fa-caret-right"></i>
-	                        Employees
+	                        List
 	                    </a>
 	                    <b class="arrow"></b>
 	                </li>
@@ -95,7 +95,7 @@
 		                <li>
 		                    <a href='<c:url value="/admin/users/roles"/>'>
 		                        <i class="menu-icon fa fa-caret-right"></i>
-		                        Employee Role
+		                        Role
 		                    </a>
 		                    <b class="arrow"></b>
 		                </li>
@@ -117,7 +117,28 @@
                 <li>
                     <a href='<c:url value="/admin/contacts/list?page=1&limit=5"/>'>
                         <i class="menu-icon fa fa-caret-right"></i>
-                        Contacts
+                        List
+                    </a>
+                    <b class="arrow"></b>
+                </li>
+            </ul>
+        </li>
+    </ul>
+    
+     <ul class="nav nav-list">
+        <li >
+            <a href="#" class="dropdown-toggle">
+                <i class="menu-icon fa fa-shopping-basket"></i>
+                <span class="menu-text"></span>
+                Orders
+                <b class="arrow fa fa-angle-down"></b>
+            </a>
+            <b class="arrow"></b>
+            <ul class="submenu">
+                <li>
+                    <a href='<c:url value="/admin/orders/list?page=1&limit=5"/>'>
+                        <i class="menu-icon fa fa-caret-right"></i>
+                        List
                     </a>
                     <b class="arrow"></b>
                 </li>

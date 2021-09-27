@@ -12,9 +12,10 @@
 </head>
 <body >
 	
-	 <div class="main-content-inner">
-		<div class="row">
-			<div class="col-xs-12"> 
+	 <div class="main-content">
+	 	<div class="page-content">
+			<div class="row">
+				<div class="col-xs-12"> 
 				
 				
 				<form:form class="form-horizontal" role="form" id="formSubmit" action="save" modelAttribute="user" method="POST" >
@@ -198,6 +199,7 @@
 					<input type="hidden" name="usernameAdmin" value="${sessionScope.user.userName}">
 				</form:form>
 			</div>
+		</div>
 		</div>
 	</div>
 <script type="text/javascript">

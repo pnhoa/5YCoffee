@@ -83,13 +83,7 @@
 							</div>
 						</div>
 						
-						<div>
-							
-							<a href="${pageContext.request.contextPath}/admin/users/"
-							style="color= blue;">Forgot password </a> enter here
-							
-						</div>
-
+					
 					</form:form>
 
 				</div>

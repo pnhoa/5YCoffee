@@ -60,6 +60,13 @@ public class ProductServiceImpl implements ProductService {
 		
 		Product theProduct = mapper.map(theProductDTO, Product.class);
 		
+		if((theProductDTO.getThumbnail() == null || theProductDTO.getThumbnail().length() == 0)  && theProductDTO.getId() != null) {
+			Product theOldProduct = productDao.findById(theProductDTO.getId());
+			theProduct.setThumbnail(theOldProduct.getThumbnail());
+		}
+		
+		
+		
 		if(theProductDTO.getCategoryCode() == null) {
 			theProductDTO.setCategoryCode("LOAI-KHAC");
 		}

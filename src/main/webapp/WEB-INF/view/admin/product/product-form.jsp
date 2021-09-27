@@ -11,7 +11,8 @@
 </head>
 <body >
 	
-	 <div class="main-content-inner">
+	 <div class="main-content">
+	 	<div class="page-content">
 		<div class="row">
 			<div class="col-xs-12"> 
 				<form:form class="form-horizontal" role="form" id="formSubmit" action="save" modelAttribute="product" method="POST" enctype="multipart/form-data">
@@ -34,7 +35,7 @@
 						<div class="form-group">
 						  	<label for="content" class="col-sm-3 control-label no-padding-right">Description</label>
 						  	<div class="col-sm-9">
-						  		<form:textarea path="description" rows="5" cols="10" cssClass="form-control" id="description"/>
+						  		<form:textarea path="description" name="description" rows="5" cols="10" cssClass="form-control" id="description"/>
 						  	</div>
 						</div>	
 						
@@ -107,9 +108,15 @@
 			</div>
 		</div>
 	</div>
-	
+	</div>
 <script>
-  var loadFile = function(event) {
+
+	var editor = '';
+	$(document).ready(function(){
+		editor = CKEDITOR.replace( 'description');
+	});
+	
+  	var loadFile = function(event) {
     var output = document.getElementById('output');
     output.src = URL.createObjectURL(event.target.files[0]);
     output.onload = function() {

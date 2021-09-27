@@ -20,7 +20,7 @@
 				<input type="submit"  value="Search" class="add-button"/>
 				
 			</form:form>
-			
+			<br><br>
 			<div class="col-xs-12">
 				<c:if test="${not empty model.message}">
 					<div class="alert alert-${model.alert}">

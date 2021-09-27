@@ -22,8 +22,8 @@
           <div class="row justify-content-center">
             <div class="col-md-8">
               <div class="mb-4">
-              <h3>Sign In to <strong>My Store</strong></h3>
-              <p class="mb-4">Create the best product</p>
+              <h3>Sign In to <strong>5Ý COFFEE</strong></h3>
+              <p class="mb-4">Enjoy the best coffee</p>
             </div>
             <!-- Login Form -->
 					<form:form action="${pageContext.request.contextPath}/authenticateTheUser" method="POST">
@@ -34,7 +34,7 @@
 					            <div>
 					            	<c:if test="${param.error != null}">
 										
-										<i class="alert alert-danger col-xs-offset-1 col-xs-">Invalid username/password</i>
+										<i class="alert alert-danger col-xs-offset-1 col-xs-10">Invalid username/password</i>
 									
 									</c:if>
 									
@@ -70,14 +70,14 @@
                 
               </div>
               
-              <div class="d-flex mb-5 align-items-center">
-              <input type="checkbox" checked="checked" />
-                <label class="control control--checkbox mb-0"><span class="caption">Remember me</span>
+<!--               <div class="d-flex mb-5 align-items-center"> -->
+<!--               <input type="checkbox" checked="checked" /> -->
+<!--                 <label class="control control--checkbox mb-0"><span class="caption">Remember me</span> -->
                   
                   
-                </label>
-                <span class="ml-auto"><a href="#" class="forgot-pass">Forgot Password</a></span> 
-              </div>
+<!--                 </label> -->
+<!--                 <span class="ml-auto"><a href="#" class="forgot-pass">Forgot Password</a></span>  -->
+<!--               </div> -->
 			
                <button type="submit" class="btn text-white btn-block btn-primary">Login </button>
                <br>

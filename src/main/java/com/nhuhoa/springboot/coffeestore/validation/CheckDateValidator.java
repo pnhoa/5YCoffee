@@ -22,7 +22,8 @@ public class CheckDateValidator implements ConstraintValidator<CheckDateFormat, 
         }
 
         try {
-            Date date = new SimpleDateFormat(pattern).parse(object);
+            @SuppressWarnings("unused")
+			Date date = new SimpleDateFormat(pattern).parse(object);
             return true;
         } catch (Exception e) {
             e.printStackTrace();
